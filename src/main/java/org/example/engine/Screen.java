@@ -60,46 +60,47 @@ public class Screen extends JPanel implements KeyListener, MouseListener, MouseM
         Cubes.add(new Cube(20, -5, 0, 2, 2, 2, Color.red));
         Cubes.add(new Cube(22, -5, 0, 2, 2, 2, Color.red));
         Cubes.add(new Cube(20, -5, 2, 2, 2, 2, Color.red));
-        addHouse();
+        addHouse(-25, -5, 2, 10);
+        addHouse(7, 35, 2, 10);
+        addHouse(-15, -35, 2, 10);
         Prisms.add(new Prism(18, -5, 2, 2, 2, 2, Color.green));
         Prisms.add(new Prism(22, -5, 2, 2, 2, 2, Color.green));
         Pyramids.add(new Pyramid(20, -5, 4, 2, 2, 2, Color.blue));
     }
 
-    private static void addHouse() {
+    private static void addHouse(int pointX, int pointY, int pointZ, int length) {
         int stepX = 0;
         int stepY = 2;
         int stepZ = 0;
-        int length = 0;
-        int width = 0;
-        for (int y = 0; y < 10; y++) {
-            for (int x = 0; x < 10; x++) {
-                Cubes.add(new Cube(27 + stepX, -5 - stepY, 2, 2, 2, 2, Color.green));
-                length = 27 + stepX;
+        int lengthX = 0;
+        int widthY = 0;
+        for (int y = 0; y < length; y++) {
+            for (int x = 0; x < length; x++) {
+                Cubes.add(new Cube(pointX + stepX, pointY - stepY, pointZ, 2, 2, 2, Color.green));
                 stepX += 2;
             }
-            width = -5 - stepY;
             stepY += 2;
+            lengthX = stepX;
             stepX = 0;
         }
+        System.out.println(lengthX);
 
         stepY = 0;
         stepX = 0;
 
-        for (int y = 0; y < 11; y++) {
-            for (int x = 0; x < 11; x++) {
-                Cubes.add(new Cube(27 + stepX, -5 - stepY, 10, 2, 2, 2, Color.green));
+        for (int y = 0; y < length + 1; y++) {
+            for (int x = 0; x < length + 1; x++) {
+                Cubes.add(new Cube(pointX + stepX, pointY - stepY, pointZ + 8, 2, 2, 2, Color.green));
                 stepX += 2;
             }
             stepY += 2;
             stepX = 0;
         }
-
         stepX = 0;
         stepZ = 0;
-        for (int x = 0; x < 10; x++) {
+        for (int x = 0; x < length; x++) {
             for (int z = 0; z < 4; z++) {
-                Cubes.add(new Cube(25 + stepX, -5, 2 + stepZ, 2, 2, 2, Color.red));
+                Cubes.add(new Cube(pointX + stepX, pointY, pointZ + stepZ, 2, 2, 2, Color.red));
                 stepZ += 2;
             }
             stepZ = 0;
@@ -108,20 +109,21 @@ public class Screen extends JPanel implements KeyListener, MouseListener, MouseM
 
         stepZ = 0;
         stepY = 0;
-        for (int y= 0; y < 12; y++) {
+        for (int y= 0; y < length + 2; y++) {
             for (int z = 0; z < 4; z++) {
-                Cubes.add(new Cube(25, -5 - stepY, 2 + stepZ, 2, 2, 2, Color.gray));
+                Cubes.add(new Cube(pointX - 2, pointY - stepY, pointZ + stepZ, 2, 2, 2, Color.PINK));
                 stepZ += 2;
             }
             stepZ = 0;
             stepY += 2;
         }
-
+        widthY = stepY;
+        System.out.println(widthY + " widthY");
         stepX = 0;
         stepZ = 0;
-        for (int y= 0; y < 12; y++) {
+        for (int y= 0; y < length + 2; y++) {
             for (int z = 0; z < 4; z++) {
-                Cubes.add(new Cube(length - stepX, -27, 2 + stepZ, 2, 2, 2, Color.gray));
+                Cubes.add(new Cube(pointX + lengthX - stepX, pointY - widthY + 4, pointZ + stepZ, 2, 2, 2, Color.YELLOW));
                 stepZ += 2;
             }
             stepX += 2;
@@ -131,9 +133,9 @@ public class Screen extends JPanel implements KeyListener, MouseListener, MouseM
         stepZ = 0;
         stepY = 0;
         //System.out.println(width + " width");
-        for (int y= 0; y < 12; y++) {
+        for (int y= 0; y < length + 2; y++) {
             for (int z = 0; z < 4; z++) {
-                Cubes.add(new Cube(length, -9 - stepY, 2 + stepZ, 2, 2, 2, Color.green));
+                Cubes.add(new Cube(pointX + lengthX,  pointY - 4 - stepY, pointZ + stepZ, 2, 2, 2, Color.LIGHT_GRAY));
                 stepZ += 2;
             }
             stepZ = 0;
